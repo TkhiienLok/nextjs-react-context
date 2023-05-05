@@ -4,7 +4,6 @@ import styles from "../styles/Home.module.css";
 import { Header } from "../components/Header";
 import { Counter } from "../components/Counter";
 
-
 export default function Home() {
   return (
     <>
@@ -17,18 +16,16 @@ export default function Home() {
 
       <main className={styles.main}>
         <div className={styles.center}>
-          
-          <Header /> 
+          <Header />
           <img
-              className={styles.logo}
-              src="/next.svg"
-              alt="Next.js Logo"
-              width={180}
-              height={37}
-            />
+            className={styles.logo}
+            src="/next.svg"
+            alt="Next.js Logo"
+            width={180}
+            height={37}
+          />
           <Counter />
         </div>
-      
       </main>
     </>
   );

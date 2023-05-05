@@ -4,9 +4,14 @@ import React, { useState } from "react";
 
 import { useAppContext } from "../../context/AppProvider";
 import { CounterActionTypes } from "../../context/reducers/counter";
+import { useCounterApi } from "../../context/hooks/counterHooks";
 
 export function Counter() {
-  const { state: { counter }, dispatch } = useAppContext();
+  const {
+    state: { counter },
+    dispatch,
+  } = useAppContext();
+  const { increaseByAmount } = useCounterApi();
   const [incrementAmount, setIncrementAmount] = useState("2");
 
   const incrementValue = Number(incrementAmount) || 0;
@@ -20,7 +25,6 @@ export function Counter() {
           onClick={() =>
             dispatch({
               type: CounterActionTypes.Decrement,
-              payload: {}
             })
           }
         >
@@ -32,8 +36,7 @@ export function Counter() {
           aria-label="Increment value"
           onClick={() =>
             dispatch({
-                type: CounterActionTypes.Increment,
-                payload: {}
+              type: CounterActionTypes.Increment,
             })
           }
         >
@@ -51,8 +54,8 @@ export function Counter() {
           className={styles.button}
           onClick={() =>
             dispatch({
-                type: CounterActionTypes.IncrementByAmount,
-                payload: {amount: incrementValue}
+              type: CounterActionTypes.IncrementByAmount,
+              payload: { amount: incrementValue },
             })
           }
         >
@@ -60,12 +63,7 @@ export function Counter() {
         </button>
         <button
           className={styles.asyncButton}
-          onClick={() =>
-            dispatch({
-                type: CounterActionTypes.IncrementAsyncByAmount,
-                payload: {amount: incrementValue}
-            }) // here api should be called
-          }
+          onClick={() => increaseByAmount(+incrementAmount)}
         >
           Add Async
         </button>
@@ -73,8 +71,8 @@ export function Counter() {
           className={styles.button}
           onClick={() =>
             dispatch({
-                type: CounterActionTypes.IncrementIfOdd,
-                payload: {amount: incrementValue}
+              type: CounterActionTypes.IncrementIfOdd,
+              payload: { amount: incrementValue },
             })
           }
         >
