@@ -1,6 +1,5 @@
-import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import Head from "next/head";
 import { Header } from "../components/Header";
 import { Counter } from "../components/Counter";
 
@@ -14,19 +13,17 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <div className={styles.center}>
-          <Header />
-          <img
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-          />
-          <Counter />
-        </div>
-      </main>
+      <div className={styles.App}>
+        <img
+          src="/next.svg"
+          className={styles.appLogo}
+          alt="logo"
+          width={180}
+          height={37}
+        />
+        <Header />
+        <Counter />
+      </div>
     </>
   );
 }

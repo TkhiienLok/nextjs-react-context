@@ -12,7 +12,7 @@ export function Counter() {
     dispatch,
   } = useAppContext();
   const { increaseByAmount } = useCounterApi();
-  const [incrementAmount, setIncrementAmount] = useState("2");
+  const [incrementAmount, setIncrementAmount] = useState(2);
 
   const incrementValue = Number(incrementAmount) || 0;
 
@@ -43,12 +43,17 @@ export function Counter() {
           +
         </button>
       </div>
+
       <div className={styles.row}>
         <input
           className={styles.textbox}
           aria-label="Set increment amount"
           value={incrementAmount}
-          onChange={(e) => setIncrementAmount(e.target.value)}
+          onChange={(e) => {
+            console.log("e.target.value", e.target.value);
+            setIncrementAmount(+e.target.value);
+          }}
+          type="number"
         />
         <button
           className={styles.button}
